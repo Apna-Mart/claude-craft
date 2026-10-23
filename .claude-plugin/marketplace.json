@@ -1,0 +1,18 @@
+{
+  "name": "apna-mart",
+  "owner": {
+    "name": "Apna Mart"
+  },
+  "description": "Apna Mart's Claude Code plugins: best-practice skills, a plain answering style and a hooks module.",
+  "plugins": [
+    {
+      "name": "craft",
+      "source": "./plugins/craft",
+      "displayName": "Craft",
+      "description": "Fifteen authored skills covering code, backend, database, dashboards, event tracking, testing, render performance, design patterns, crash fixing, bug reports, product specs and explanation, plus a plain answering style and a hooks module that guards shell commands and file edits: git naming and safety, trash instead of delete, the project's own package manager, linter and formatter, and no hand edits to lockfiles.",
+      "category": "productivity",
+      "keywords": ["best-practices", "skills", "code-quality", "output-style"],
+      "defaultEnabled": true
+    }
+  ]
+}
