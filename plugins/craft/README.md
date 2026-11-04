@@ -1,6 +1,6 @@
 # Craft
 
-A Claude Code skill pack, bundled as a plugin. Skills are namespaced as `craft:<skill>` (for example `/craft:minimize-diff`).
+A Claude Code skill pack, bundled as a plugin. Skills are namespaced as `craft:<skill>` (for example `/craft:minimize-diff`). The plain answering style is optional: pick it with `/output-style craft:plain`.
 
 ## Skills
 

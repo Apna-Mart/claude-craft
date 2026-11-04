@@ -3,7 +3,7 @@
   "name": "craft",
   "displayName": "Craft",
   "description": "Claude Code skill pack: coding, backend, database, testing, UI state, render performance, design patterns, dashboards, event tracking, explanations, crash fixing, bug reports, product specs, diff minimizing and calculation, plus a plain answering style and a hooks module that guards shell commands and file edits.",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "author": {
     "name": "Dipendra Sharma"
   },

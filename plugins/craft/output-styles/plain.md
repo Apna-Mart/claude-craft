@@ -2,7 +2,6 @@
 name: plain
 description: Answer first, plain words, light formatting
 keep-coding-instructions: true
-force-for-plugin: true
 ---
 
 # How to write replies
