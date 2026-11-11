@@ -112,11 +112,18 @@ describe('attribution', () => {
 })
 
 describe('commit identity', () => {
-  test('a repository with no local email is refused until the user gives theirs', async () => {
+  test('a repository where git resolves no email is refused until the user gives theirs', async () => {
     const reason = denied(await judge('git commit -m "fix(core): x"', { email: '' }))
     expect(reason).toContain('AskUserQuestion')
     expect(reason).toContain('git config user.email')
     expect(reason).not.toMatch(/[\w.+-]+@[\w-]+\.[a-z]+/)
+  })
+  test('an email from includeIf or global config counts, as git commits with it', async () => {
+    const host = fakeHost()
+    const scopes = ['--local', '--global', '--system', '--worktree', '--file', '-f', '--no-includes']
+    const includedEmailOnly: Probe = async (argv, cwd) =>
+      argv[1] === 'config' && argv.some(arg => scopes.includes(arg)) ? { exitCode: 1, stdout: '' } : host(argv, cwd)
+    expect((await judgeBash('git commit -m "fix(core): x"', '/repo', includedEmailOnly, '/Users/me')).kind).toBe('pass')
   })
   test('the commit name is left as the user set it', async () => {
     expect((await judge('git commit -m "fix(core): x"', { name: 'Ana Example' })).kind).toBe('pass')

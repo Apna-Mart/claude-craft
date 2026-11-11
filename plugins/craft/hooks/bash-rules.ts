@@ -196,10 +196,11 @@ async function guardCommit(ctx: Context, gitDir: string | undefined, args: Word[
   const subjectProblem = subjectDenial(optionValue(args, 'm', '--message'), 'commit subjects')
   if (subjectProblem) return { deny: subjectProblem }
   if (gitDir === undefined) return undefined
-  const email = await ctx.probe(['git', 'config', '--local', 'user.email'], gitDir)
+  // The configured email across every scope and include, resolved in git's order. Env overrides are not seen.
+  const email = await ctx.probe(['git', 'config', '--get', 'user.email'], gitDir)
   if (email === undefined || email.exitCode === NOT_A_REPOSITORY || email.stdout.trim() !== '') return undefined
   return {
-    deny: 'this repository has no local commit email. Ask the user with AskUserQuestion which email to commit with, then run `git config user.email "<their email>"` and commit again.',
+    deny: 'git has no commit email for this repository. Ask the user with AskUserQuestion which email to commit with, then run `git config user.email "<their email>"` and commit again.',
   }
 }
 
